@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G_lill</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111827">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <h1>💰 G_lill</h1>
+    <p class="tag">Student Finance</p>
+    <nav>
+      <button class="nav active" data-page="dashboard">Dashboard</button>
+      <button class="nav" data-page="transactions">Transactions</button>
+      <button class="nav" data-page="budget">Budget</button>
+    </nav>
+  </aside>
+
+  <main>
+    <header>
+      <div><span class="eyebrow">PERSONAL FINANCE</span><h2 id="pageTitle">Dashboard</h2></div>
+      <button class="primary" id="addBtn">+ Add transaction</button>
+    </header>
+
+    <section id="dashboard" class="page">
+      <div class="cards">
+        <div class="card"><span>Balance</span><strong id="balance">KSh 0</strong></div>
+        <div class="card"><span>Income</span><strong id="income">KSh 0</strong></div>
+        <div class="card"><span>Expenses</span><strong id="expenses">KSh 0</strong></div>
+        <div class="card"><span>Savings rate</span><strong id="rate">0%</strong></div>
+      </div>
+      <div class="grid">
+        <div class="panel"><h3>Recent transactions</h3><div id="recent"></div></div>
+        <div class="panel"><h3>Spending by category</h3><div id="categories"></div></div>
+      </div>
+    </section>
+
+    <section id="transactions" class="page hidden">
+      <div class="panel"><h3>All transactions</h3><div id="allTransactions"></div></div>
+    </section>
+
+    <section id="budget" class="page hidden">
+      <div class="panel">
+        <h3>Monthly budget</h3>
+        <div class="budget-row"><span>Food</span><input data-cat="Food" type="number" value="700"></div>
+        <div class="budget-row"><span>Transport</span><input data-cat="Transport" type="number" value="1500"></div>
+        <div class="budget-row"><span>School</span><input data-cat="School" type="number" value="2000"></div>
+        <div class="budget-row"><span>Other</span><input data-cat="Other" type="number" value="1000"></div>
+        <button class="primary" id="saveBudget">Save budget</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal hidden" id="modal">
+  <form class="dialog" id="form">
+    <button type="button" class="close" id="close">×</button>
+    <h2>Add transaction</h2>
+    <label>Type<select id="type"><option value="expense">Expense</option><option value="income">Income</option></select></label>
+    <label>Description<input id="desc" required placeholder="e.g. Lunch"></label>
+    <label>Amount (KSh)<input id="amount" type="number" min="1" required></label>
+    <label>Category<select id="cat"><option>Food</option><option>Transport</option><option>School</option><option>Business</option><option>Forex</option><option>Other</option></select></label>
+    <button class="primary" type="submit">Save transaction</button>
+  </form>
+</div>
+<script src="app.js"></script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js")}</script>
+</body>
+</html>
